@@ -1,0 +1,63 @@
+	LDA	result
+	SUB	result
+	STO	result
+	IN	
+	STO	a
+	IN
+	STO	b
+	IN
+	STO 	c
+	ADD	a
+	STO	a
+	BRZ	zero
+	SUB	c
+	BRP	nover
+zero	LDA	c
+	BRZ	nover
+	LDA	over
+	ADD	one
+	STO	over
+nover	LDA	a
+	ADD	b
+	STO	a
+	BRZ 	zero1
+	SUB	b
+	BRP	nover2
+zero1	LDA	b
+	BRZ	nover2
+	LDA	over
+	ADD	one
+	STO	over
+nover2	LDA	over
+	BRZ	nover3
+	LDA	result
+	ADD	div
+	STO	result
+	LDA	a
+	ADD	one
+	STO	a
+	LDA	over
+	SUB	one
+	STO 	over
+	BRP	nover2
+nover3	LDA	a
+	SUB	three
+	STO	a
+	BRP	cont
+	BR	end
+cont	LDA	result
+	ADD	one
+	STO 	result
+	BR	nover3
+end	LDA	result
+	OUT
+	HLT
+a	DAT	000
+b	DAT	000
+c	DAT	000
+tot	DAT	000
+over	DAT	000
+one	DAT	001
+three	DAT	003
+div	DAT	333 
+result	DAT	000
